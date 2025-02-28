@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+  labels:
+    app: nodejs-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+        - name: nodejs-app
+          image: mitsu52/node_typescript_mongodb:v1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: "mongodb://mongodb-service:27017/docker_mongo"
+            - name: NODE_ENV
+              value: "development"
+            - name: PORT
+              value: "3000"
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: secret-key
+          # Define resource requests and limits to manage resource allocation
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+type: Opaque
+data:
+  secret-key: aUFtU3VwZXJCb3k=  # Base64 encoded value of your secret

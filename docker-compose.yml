@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mitsu52/node_typescript_mongodb:v1
+    container_name: nodejs
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URL=mongodb://localhost:27017/docker_mongo
+      - NODE_ENV=development
+      - PORT=3000
+      - SECRET=iAmSuperBoy
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+    driver: local
