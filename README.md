@@ -114,7 +114,7 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
         ```
         docker-compose up -d
         ```
-         3. Start the containers:
+         3. Push to docker hub:
         ```
         docker push  <your-username>/<your-docker-name>:<tag-name>
         ```
