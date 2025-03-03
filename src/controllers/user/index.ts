@@ -1,1 +1,1 @@
-export { all } from './all';
+export { all } from './all.js';

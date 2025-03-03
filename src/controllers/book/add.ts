@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import Joi from '@hapi/joi';
-import { relogRequestHandler } from '../../middleware/request-middleware';
-import { Book } from '../../models/Book';
+import { relogRequestHandler } from '../../middleware/request-middleware.js';
+import { Book } from '../../models/Book.js';
 
 export const addBookSchema = Joi.object().keys({
   name: Joi.string().required(),

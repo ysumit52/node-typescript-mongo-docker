@@ -5,7 +5,7 @@
       "version": "1.0.0",
       "description": "API Service endpoints",
       "contact": {
-        "email": "vigneshkundhanam@gmail.com",
+        "email": "smith11191@gmail.com",
         "name": "Y G Sumit"
       }
     },
@@ -282,7 +282,7 @@
           "properties": {
             "email": {
               "type": "string",
-              "example": "vigneshkundhanam@gmail.com"
+              "example": "smith11191@gmail.com"
             },
             "password": {
               "type": "string",
@@ -335,7 +335,7 @@
           "properties": {
             "email": {
               "type": "string",
-              "example": "vigneshkundhanam@gmail.com"
+              "example": "smith11191@gmail.com"
             },
             "password": {
               "type": "string",
@@ -343,11 +343,11 @@
             },
             "firstName": {
               "type": "string",
-              "example": "K V"
+              "example": "Y G"
             },
             "lastName": {
               "type": "string",
-              "example": "Vignesh"
+              "example": "Sumit"
             }
           }
         },

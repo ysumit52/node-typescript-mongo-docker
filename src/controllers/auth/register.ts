@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import Joi from '@hapi/joi';
-import { relogRequestHandler } from '../../middleware/request-middleware';
-import { User } from '../../models/User';
+import { relogRequestHandler } from '../../middleware/request-middleware.js';
+import { User } from '../../models/User.js';
 
 export const addUserSchema = Joi.object().keys({
   email: Joi.string().required(),

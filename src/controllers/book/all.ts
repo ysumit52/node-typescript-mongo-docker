@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
-import { relogRequestHandler } from '../../middleware/request-middleware';
-import { Book } from '../../models/Book';
+import { relogRequestHandler } from '../../middleware/request-middleware.js';
+import { Book } from '../../models/Book.js';
 
 const allWragger: RequestHandler = async (req, res) => {
   const books = await Book.find();

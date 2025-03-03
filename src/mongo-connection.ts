@@ -16,7 +16,6 @@ interface IOnConnectedCallback {
  *
  * This library tries to auto-reconnect to
  * MongoDB without crashing the server.
- * @author Sidhant Panda
  */
 export default class MongoConnection {
   /** URL to access mongo */

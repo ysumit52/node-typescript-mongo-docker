@@ -1,7 +1,7 @@
 {
   "name": "node-typescript-mongodb-docker",
   "version": "1.0.0",
-  "description": "Boilerplate for Node-TypeScript-Express-MongoDB",
+  "description": "Boilerplate for Node-TypeScript-MONGODB-DOCKER",
   "repository": {
     "type": "git",
     "url": "https://github.com/ysumit52/node-typescript-mongo-docker"
@@ -23,7 +23,7 @@
     "build": "tsc",
     "lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts",
     "dev": "nodemon --exec tsx src/server.ts",
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests",
     "fix-lint": "npx eslint src --ext .ts --fix"
   },
