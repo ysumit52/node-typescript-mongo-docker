@@ -18,7 +18,7 @@ COPY . .
 
 # Rebuild native modules
 # RUN npm rebuild bcrypt
-RUN npm rebuild bcrypt --build-from-source
+# RUN npm rebuild bcrypt --build-from-source
 
 # Build TypeScript code
 RUN npm run build

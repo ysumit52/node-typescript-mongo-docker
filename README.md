@@ -114,6 +114,10 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
         ```
         docker-compose up -d
         ```
+         3. Start the containers:
+        ```
+        docker push  <your-username>/<your-docker-name>:<tag-name>
+        ```
         4. Verify that your services are running:
         ```
         docker ps
@@ -162,15 +166,15 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
         ```
         kubectl get services
         ```
-            - If your service type is NodePort, you can access it via:
-            ```
-            minikube service nodejs-service
-            ```
-            - Or 
-            ```
-            kubectl port-forward service/nodejs-service 3000:3000
-            ```
-            (Replace 3000 with your actual exposed port)
+        3. If your service type is NodePort, you can access it via:
+        ```
+        minikube service nodejs-service
+        ```
+        4. Or 
+        ```
+        kubectl port-forward service/nodejs-service 3000:3000
+        ```
+        (Replace 3000 with your actual exposed port)
 
     * Step 4: Scale and Manage Deployment
         1. Scale Up or Down
@@ -197,6 +201,36 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
     * Rebuild the Docker image with the latest code
     ```
     docker build -t my-nodejs-app:v2 .
+    ```
+    * Rebuild the Docker image without cache
+    ```
+    docker build --no-cache -t mitsu52/node_typescript_mongodb:v2 .
+    ```
+
+* Update Kubernetes Deployment
+    * Force a Rolling Restart
+    ```
+    kubectl rollout restart deployment your-deployment-name
+    ```
+    * If your deployment uses latest tag, Kubernetes might not pull the new image automatically due to caching. To force it, update the image manually:
+    ```
+    kubectl set image deployment/your-deployment-name your-container-name=your-repo/your-image-name:latest
+    ```
+    * Kubernetes services don’t need a restart unless their configurations are changed. However, you can delete and recreate the service if needed:
+    ```
+    kubectl delete svc your-service-name
+    kubectl apply -f service.yaml
+    ```
+    * Check if new pods are running correctly:
+    ```
+    kubectl get pods
+    kubectl describe pod <pod-name>
+    kubectl logs <pod-name> -f  # View logs in real-time
+    ```
+
+    * If your pods are still using the old image, try:
+    ```
+    kubectl delete pod --all
     ```
 
 

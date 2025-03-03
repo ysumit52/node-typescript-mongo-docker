@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nodejs-app
-          image: mitsu52/node_typescript_mongodb:v1
+          image: mitsu52/node_typescript_mongodb:v2
           ports:
             - containerPort: 3000
           env:

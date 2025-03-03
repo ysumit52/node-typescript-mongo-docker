@@ -1,8 +1,7 @@
 import {
   Document, Model, Schema, model
 } from 'mongoose';
-import { hashSync, genSaltSync, compareSync } from 'bcrypt';
-
+import * as argon2 from 'argon2';
 export interface IUser extends Document {
   /** Email */
   email: string;
@@ -38,10 +37,15 @@ const schema = new Schema({
   }
 });
 
-schema.methods.encryptPassword = (password: string) => hashSync(password, genSaltSync(10));
+schema.methods.encryptPassword = async (password: string) => await argon2.hash(password);
 
-schema.methods.validPassword = function (password: string) {
-  return compareSync(password, this.password);
+// Method to verify the password during authentication
+schema.methods.validPassword = async function (password: string): Promise<boolean> {
+  try {
+    return await argon2.verify(this.password, password);
+  } catch (err) {
+    throw new Error('Password validation failed');
+  }
 };
 
 export const User: IUserModel = model<IUser, IUserModel>('User', schema);

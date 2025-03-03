@@ -18,7 +18,7 @@ const registerWrapper: RequestHandler = async (req, res) => {
   const user = new User({
     email, firstName, lastName, createdOn: Date.now()
   });
-  user.password = user.encryptPassword(password);
+  user.password = await user.encryptPassword(password);
 
   await user.save();
 
